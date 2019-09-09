@@ -14,12 +14,17 @@
 
 package com.company;
 
+import java.util.ArrayList;
+
 public class User
 {
     private String firstName,
                    lastName,
                    username,
-                   encryptedPassword;
+                   encryptedPassword,
+                   email;
+    private boolean isMetricUser;
+    private ArrayList<String> categories = new ArrayList<>();
 
     User() //default User
     {
@@ -27,14 +32,17 @@ public class User
         this.lastName = "";
         this.username = "";
         this.encryptedPassword = "";
+        this.email = "";
+        this.isMetricUser = true;
     }
 
-    User(String l_firstName, String l_lastName, String l_username, String l_password) //overloaded Users constructor
+    User(String l_firstName, String l_lastName, String l_username, String l_password, String l_email) //overloaded Users constructor
     {
         this.firstName = l_firstName;
         this.lastName = l_lastName;
         this.username = l_username;
         this.encryptedPassword = hash(l_password);
+        this.email = l_email;
     }
 
     public String hash(String l_plainTextPassword) //function to hash a password
@@ -68,9 +76,22 @@ public class User
     public String getLastName() { return this.lastName; }
     public void setLastName(String l_lastName) {this.lastName = l_lastName;}
 
+    public String getEmail() { return this.email; }
+    public void setEmail(String l_email) { this.email = l_email; }
+
     public String getUsername() { return this.username; }
     public void setUsername(String l_username) {this.username = l_username;}
 
     public String getEncryptedPassword() { return this.encryptedPassword; }
     public void setEncryptedPassword(String l_encryptedPassword) { this.encryptedPassword = l_encryptedPassword; }
+
+    public boolean getIsMetricUser() { return this.isMetricUser; }
+    public void setIsMetricUser(boolean l_isMetricUser) { this.isMetricUser = l_isMetricUser; }
+
+    public ArrayList<String> getCategories() { return this.categories; }
+    public void setCategories(ArrayList<String> l_newCategories) { this.categories = l_newCategories; }
+    public String getCategory(int l_index) { return this.categories.get(l_index); }
+    public void setCategory(String l_newCategory, int l_index) { this.categories.set(l_index, l_newCategory); }
+    public void addCategory(String l_newCategory) { this.categories.add(l_newCategory); }
+    public void removeCategory(int l_index) { this.categories.remove(l_index); }
 }
